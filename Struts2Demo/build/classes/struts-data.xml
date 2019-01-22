@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<package name="object" extends="struts-default" namespace="/object">
+		
+		<action name="register" class="com.david.struts2.objectdata.action.RegisterAction" method="register">
+			<result>/jsp/3objectData/show.jsp</result>
+		</action>
+		<action name="regModel" class="com.david.struts2.objectdata.action.UserModelAction" method="register">
+			<result>/jsp/3objectData/show.jsp</result>
+		</action>
+		
+		
+	</package>
+
+</struts>

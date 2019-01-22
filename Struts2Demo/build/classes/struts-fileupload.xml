@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!--设置临时目录-->
+	<constant name="struts.multipart.saveDir" value="F:/learn/struts2/temps"></constant>
+	<!-- 最上层上传文件大小的最大值 maxSize必须大于maximumSize -->
+	<constant name="struts.multipart.maxSize" value="31457280"></constant>
+	<!--  -->
+	<package name="file" extends="struts-default" namespace="/file">
+		
+		<action name="fileupload" class="com.david.struts.fileupload.FileUploadAction" method="upload">
+			<result>/jsp/9fileupload/success.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!--设置文件上传大小最大值-->
+				<param name="maximumSize">31457280</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		<!--批量上传！-->
+		<action name="batchUpload" class="com.david.struts.fileupload.BatchUploadAction" method="upload">
+			<result>/jsp/9fileupload/success.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!--设置文件上传大小最大值-->
+				<param name="maximumSize">31457280</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		<!--下载-->
+		<action name="download" class="com.david.struts.fileupload.DownLoadByServlet" method="download"></action>
+		
+		<action name="downloadfile" class="com.david.struts.fileupload.StreamDownLoad" method="download2">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;fileName=${fileName}</param>
+			</result>
+		</action>
+		
+	</package>
+
+</struts>

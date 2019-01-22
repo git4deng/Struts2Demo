@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	 <package name="interceptor" extends="struts-default" namespace="/interceptor">
+		
+		<!-- 拦截器在package里面配置
+		配置拦截器 -->
+		<interceptors>
+			<!-- 方法拦截器，方法拦截器相对于action拦截器拦截粒度更小，可以作用于一个action的方法
+			其配置方式与action拦截器配置方式一样，但是方法拦截器包含2个参数： -->
+			
+			
+			<interceptor name="list-method-interceptor" class="com.david.struts.interceptor.interceptor.ListMethodInterceptor">
+				<param name="includeMethods">list</param>
+			</interceptor>
+			<interceptor name="time" class="com.david.struts.interceptor.interceptor.TimeInterceptor"></interceptor>
+			<interceptor name="login-interceptor" class="com.david.struts.interceptor.interceptor.LoginInterceptor"></interceptor>
+			
+			 <!-- 当action引用多个拦截器时，可以将多个拦截器放入一个拦截器栈中 -->
+			<interceptor-stack name="mystack">
+				<interceptor-ref name="list-method-interceptor"></interceptor-ref>
+				<!-- 一个拦截器中可以包含多个拦截器（栈)的引用 -->
+				<interceptor-ref name="login-interceptor"></interceptor-ref>
+				<interceptor-ref name="time"></interceptor-ref>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<!--  3.
+		当自定义的拦截器在当前package下所有的action都使用时，我们可以通过配置默认拦截器的方式，就可以不用再在每个action中单独引入了
+		定义默认拦截器(注意：默认拦截器的位置在配置的拦截器之后) -->
+		<default-interceptor-ref name="mystack"/>
+		
+		
+		 <!-- 全局结果集 -->
+		<global-results>
+			<result name="login">/jsp/8interceptor/login.jsp</result>
+		</global-results>
+		<!--  
+		此处注意：1.当引用了自定义的拦截器，默认拦截器不会起作用，导致struts的核心功能不能使用，比如action 的参数将无法初始化等
+				2.默认拦截器在 com.opensymphony.xwork2/struts-default.xml中配置<default-interceptor-ref name="defaultStack"/>
+				3.要想使用strutst提供的拦截器需要手动引入一下 -->
+		
+		<action name="hello" class="com.david.struts.interceptor.action.HelloAction" method="sayHello">
+			<result>/jsp/8interceptor/hello.jsp</result>
+			<!-- 1.
+			引用自定义拦截器 -->
+			<interceptor-ref name="time"></interceptor-ref>
+			<!-- 引用默认拦截器（引用拦截器和引用拦截器栈的方法一样） -->
+			<interceptor-ref name="defaultStack"/>
+			
+			<!-- 2.
+			引用拦截器栈 -->
+			<interceptor-ref name="mystack"></interceptor-ref>
+		
+		</action>
+		
+		<action name="login" class="com.david.struts.interceptor.action.LoginAction" method="login">
+			<result>/jsp/8interceptor/tohello.jsp</result>
+		</action>
+		<!-- action验证方法拦截器 -->
+		<action name="list" class="com.david.struts.interceptor.action.HelloAction" method="list">
+			<result>/jsp/8interceptor/hello.jsp</result>
+		</action>
+	</package>
+
+</struts>

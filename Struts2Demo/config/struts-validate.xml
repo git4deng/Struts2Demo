@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<package name="validate" extends="struts-default" namespace="/validate">
+		
+		<action name="default" class="com.david.struts2.validate.action.RegisterAction">
+			<result>/jsp/7validate/success.jsp</result>
+		</action>
+		
+		<action name="register" class="com.david.struts2.validate.action.RegisterAction" method="register">
+			<result>/jsp/7validate/success.jsp</result>
+			<result name="input">/jsp/7validate/error.jsp</result>
+		</action>
+		<action name="login" class="com.david.struts2.validate.action.ValidateAction" method="login">
+			<result>/jsp/7validate/success.jsp</result>
+			<result name="input">/jsp/7validate/register.jsp</result>
+		</action>
+		
+		<action name="tovalidate" class="com.david.struts2.validate.action.ValidationAction" method="nameValidate">
+			<result>/jsp/7validate/success.jsp</result>
+			<result name="input">/jsp/7validate/validate.jsp</result>
+		</action>
+		
+		
+	</package>
+
+</struts>

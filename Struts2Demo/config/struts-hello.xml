@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!--配置文件加载顺序：struts-default.xml struts-plugin.xml struts.xml  -->
+	<!-- extend继承，直接或者间接继承 struts-default, struts-default.xml中定义了一个name为struts-default的
+	package,name 自定义用来标识次package-->
+	<!--包的名称是自定义的，可以配置多个包，namespace命名空间：不同模块可以指定不同的命名空间
+	推荐不同模块将命名空间加上，其访问路径也会相应增加/namespace
+	-->
+	<package name="hello" extends="struts-default" namespace="/">
+		
+		<!-- 默认请求action配置 -->
+		<default-action-ref name="error"/>	
+		
+		
+		<!--全局结果集配置，发生异常或者其它错误可以返回 404字符串，统一处理错误页面-->
+		<global-results>
+			<result name="404">/jsp/1hello/404.jsp</result>
+		</global-results>
+		
+		<action name="error">
+			<result name="404">/jsp/1hello/404.jsp</result>
+		</action>
+		
+		<!--action name是请求名称，不用写/ class对应action完全限定名-->
+		<action name="hello" class="com.david.struts2.hello.action.HelloAction">
+			<!--result是结果集，name和action的返回值匹配，默认是success 注意此返回值大小写敏感-->
+			<result name="success">/jsp/1hello/hello.jsp</result>
+		</action>
+		<action name="login" class="com.david.struts2.hello.action.LoginAction">
+			<!--struts2默认的跳转方式是转发-->
+			<result name="success">/jsp/1hello/success.jsp</result>
+			<result name="failed">/jsp/1hello/login.jsp</result>
+		</action>
+		<!--action配置 的另外一个参数：
+		method：默认情况下，action执行的是execute方法，我们可以通过method属性设置action调用的方法，方法要满足：公共的，返回String，无参的
+		注意：name属性跟method没关系。
+		-->
+		<action name="logout" class="com.david.struts2.hello.action.LoginAction" method="logout">
+			<!--退出成功后跳转到登陆页面-->
+			<result name="success">/jsp/1hello/login.jsp</result>
+		</action>
+	</package>
+
+</struts>

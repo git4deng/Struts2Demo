@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="servletApi" extends="struts-default" namespace="/api">
+		<action name="method1" class="com.david.struts2.servletApi.GetServletApiAction" method="method1">
+			<result>/jsp/4servletApi/success.jsp</result>
+		</action>
+		<action name="method2" class="com.david.struts2.servletApi.GetServletApiAction" method="method2">
+			<result>/jsp/4servletApi/success.jsp</result>
+		</action>
+		<action name="method3" class="com.david.struts2.servletApi.ServletApiAction" method="method3">
+			<result>/jsp/4servletApi/success.jsp</result>
+		</action>
+		<action name="method4" class="com.david.struts2.servletApi.GetServletApiAction" method="method4">
+			<result>/jsp/4servletApi/success.jsp</result>
+		</action>
+	</package>
+</struts>

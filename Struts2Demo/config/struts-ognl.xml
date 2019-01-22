@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<package name="ognl" extends="struts-default" namespace="/ognl">
+		
+		<action name="toLogin" class="com.david.struts.ognl.action.OgnlAction" method="toLogin">
+			<result>/jsp/5ognl/login.jsp</result>
+		</action>
+		<action name="login" class="com.david.struts.ognl.action.OgnlAction" method="login">
+			<!--退出成功后跳转到登陆页面-->
+			<result name="success">/jsp/5ognl/success.jsp</result>
+		</action>
+	</package>
+
+</struts>

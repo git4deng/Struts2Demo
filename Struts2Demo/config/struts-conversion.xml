@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<package name="converter" extends="struts-default" namespace="/converter">
+		
+		<action name="normal" class="com.david.struts.typeConverter.action.PointerAction" method="getPointer1">
+			<result>/jsp/6typeConverter/show1.jsp</result>
+		</action>
+		
+		<action name="conversion" class="com.david.struts.typeConverter.action.PointerAction" method="getPointer2">
+			<result>/jsp/6typeConverter/show2.jsp</result>
+		</action>
+	</package>
+
+</struts>

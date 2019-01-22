@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	
+	<package name="action" extends="struts-default" namespace="/action">
+		
+		<action name="pojo" class="com.david.struts2.action.PojoAction">
+			<result>/jsp/1hello/success.jsp</result>
+		</action>
+		
+		<action name="interface" class="com.david.struts2.action.ExtendsAction">
+			<result>/jsp/1hello/success.jsp</result>
+		</action>
+		
+		<action name="extends" class="com.david.struts2.action.InterfaceAction">
+			<result>/jsp/1hello/success.jsp</result>
+		</action>
+	</package>
+
+</struts>
